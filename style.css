@@ -1,0 +1,143 @@
+/* ============================================================
+   NO BORDER CMC — style.css
+   Underground punk cycling / messenger championship.
+   No framework. No build step. No external dependencies.
+   ============================================================ */
+
+/* --- Reset ------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Variables --------------------------------------------- */
+
+:root {
+  /*
+    COLOUR PALETTE
+    These are defaults. The background image will dominate the visual.
+    Adjust --btn-bg and --btn-color if the button is hard to read
+    against your specific background image.
+  */
+  --btn-bg:        #e8d800;   /* courier-tape yellow              */
+  --btn-color:     #0a0a0a;   /* near-black                       */
+  --btn-border:    #e8d800;
+  --btn-hover-bg:  #0a0a0a;
+  --btn-hover-fg:  #e8d800;
+  --font:          'Courier New', Courier, monospace;
+}
+
+/* --- Full-screen background -------------------------------- */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  /*
+    BACKGROUND IMAGE
+    img/background.png is loaded here.
+    Covers the full viewport, centered, never repeats.
+  */
+  background-image: url('img/background.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   /* parallax-like on desktop */
+
+  font-family: var(--font);
+  min-height: 100vh;
+}
+
+/* --- Main screen ------------------------------------------- */
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem 1rem;
+}
+
+/* --- Logo -------------------------------------------------- */
+
+.logo {
+  display: block;
+  width: min(320px, 80vw);
+  height: auto;
+  /*
+    Drop shadow makes the logo readable on any background.
+    Adjust or remove if your logo already has a background.
+  */
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.7));
+}
+
+/* --- PAY button -------------------------------------------- */
+
+.pay-btn {
+  display: inline-block;
+  padding: 1rem 3.5rem;
+
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  border: 3px solid var(--btn-border);
+
+  font-family: var(--font);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  /* Deliberately no border-radius — raw, not polished */
+  border-radius: 0;
+
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.pay-btn:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
+}
+
+.pay-btn:focus-visible {
+  outline: 3px solid var(--btn-bg);
+  outline-offset: 4px;
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-fg);
+}
+
+.pay-btn:active {
+  background-color: #c0392b;
+  border-color: #c0392b;
+  color: #f0ede6;
+}
+
+/* --- Responsive -------------------------------------------- */
+
+/*
+  On very small screens, reduce the gap so logo + button
+  both fit without scrolling.
+*/
+@media (max-height: 480px) {
+  .screen {
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+/*
+  background-attachment: fixed causes issues on iOS Safari.
+  Fall back to scroll on touch devices.
+*/
+@media (hover: none) {
+  body {
+    background-attachment: scroll;
+  }
+}
