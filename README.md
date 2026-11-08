@@ -1,3 +1,5 @@
+[![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/nobordercmc.openrepos.org.json&style=flat-square)](https://nobordercmc.openrepos.org/)
+
 # No Border CMC — Payment Website
 
 ## Stripe setup
